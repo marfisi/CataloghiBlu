@@ -14,9 +14,9 @@ public class Resources{
 	private EntityManager emSqlite = null;
 	private EntityTransaction utxSqlite = null;
 	
-//	private EntityManagerFactory emfPg = null;
-//	private EntityManager emPg = null;
-//	private EntityTransaction utxPg = null;
+	private EntityManagerFactory emfPg = null;
+	private EntityManager emPg = null;
+	private EntityTransaction utxPg = null;
 	
 	public Resources(){
 		super();
@@ -26,9 +26,9 @@ public class Resources{
 		if(emfSqlite == null) {
 			initSqlite();
 		}
-//		if(emfPg == null) {
-//			initPg();
-//		}
+		if(emfPg == null) {
+			initPg();
+		}
 	}
 	
 	private void initAs(){
@@ -43,11 +43,11 @@ public class Resources{
 		utxSqlite = emSqlite.getTransaction();
 	}
 	
-//	private void initPg(){
-//		emfPg = Persistence.createEntityManagerFactory("Postgresql");
-//		emPg = emfPg.createEntityManager();
-//		utxPg = emPg.getTransaction();
-//	}
+	private void initPg(){
+		emfPg = Persistence.createEntityManagerFactory("Postgresql");
+		emPg = emfPg.createEntityManager();
+		utxPg = emPg.getTransaction();
+	}
 	
 	public void close(){
 		if(emfAs != null) {
@@ -56,9 +56,9 @@ public class Resources{
 		if(emfSqlite != null) {
 			closeSqlite();
 		}
-//		if(emfPg != null) {
-//			closePg();
-//		}
+		if(emfPg != null) {
+			closePg();
+		}
 	}
 
 	private void closeAs(){
@@ -71,10 +71,10 @@ public class Resources{
 		emfSqlite.close();
 	}
 	
-//	private void closePg(){
-//		emPg.close();
-//		emfPg.close();
-//	}
+	private void closePg(){
+		emPg.close();
+		emfPg.close();
+	}
 	
 	public EntityManagerFactory getEmfAs(){
 		return emfAs;
@@ -124,27 +124,27 @@ public class Resources{
 		this.utxSqlite = utxSqlite;
 	}
 	
-//	public EntityManagerFactory getEmfPg(){
-//		return emfPg;
-//	}
-//	
-//	public void setEmfPg(EntityManagerFactory emfPg){
-//		this.emfPg = emfPg;
-//	}
-//	
-//	public EntityManager getEmPg(){
-//		return emPg;
-//	}
-//	
-//	public void setEmPg(EntityManager emPg){
-//		this.emPg = emPg;
-//	}
-//	
-//	public EntityTransaction getUtxPg(){
-//		return utxPg;
-//	}
-//	
-//	public void setUtxPg(EntityTransaction utxPg){
-//		this.utxPg = utxPg;
-//	}
+	public EntityManagerFactory getEmfPg(){
+		return emfPg;
+	}
+	
+	public void setEmfPg(EntityManagerFactory emfPg){
+		this.emfPg = emfPg;
+	}
+	
+	public EntityManager getEmPg(){
+		return emPg;
+	}
+	
+	public void setEmPg(EntityManager emPg){
+		this.emPg = emPg;
+	}
+	
+	public EntityTransaction getUtxPg(){
+		return utxPg;
+	}
+	
+	public void setUtxPg(EntityTransaction utxPg){
+		this.utxPg = utxPg;
+	}
 }

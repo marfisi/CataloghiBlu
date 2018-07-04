@@ -10,9 +10,8 @@ import javax.persistence.*;
 @Entity(name="Anmag0f")
 @NamedQueries({
 	@NamedQuery(name = "AsAnmag0f.findAll", query = "SELECT a FROM Anmag0f a WHERE a.atama != 'A' and a.atama != 'S' order by a.mcoda asc"),
-	@NamedQuery(name = "AsAnmag0f.findByMcoda", query = "SELECT a FROM Anmag0f a WHERE a.atama != 'A' and a.atama != 'S' and a.mcoda = :mcoda"),
-	@NamedQuery(name = "AsAnmag0f.findAllIngrosso", query = "SELECT a FROM Anmag0f a WHERE a.atama != 'A' and a.atama != 'S' and ((a.mdepi = 1) or (a.mdepi = 3))"),
-	@NamedQuery(name = "AsAnmag0f.findByMcomp", query = "SELECT a FROM Anmag0f a WHERE a.atama != 'A' and a.atama != 'S' and ((a.mdepi = 1) or (a.mdepi = 3)) and a.mcomp= :mcomp order by a.mcoda asc")
+	@NamedQuery(name = "AsAnmag0f.findByMcoda", query = "SELECT a FROM Anmag0f a WHERE a.atama != 'A' and a.atama != 'S' and a.mcoda = :mcoda "),
+	@NamedQuery(name = "AsAnmag0f.findAllIngrosso", query = "SELECT a FROM Anmag0f a WHERE a.atama != 'A' and a.atama != 'S' and ((a.mdepi = 1) or (a.mdepi = 3))")
 })
 public class AsAnmag0f implements Serializable{
 	private static final long serialVersionUID = 1L;
@@ -30,20 +29,19 @@ public class AsAnmag0f implements Serializable{
 	private Float mpeu1;
 	private Float msc11;
 	private Float mconf;
-	private String mdepi;
+	private Integer mgrup;
+	private Integer msotg;
 	private String madiv;
+	private String mdepi;
 	private String magru;
 	private String masot;
 	private String mafam;
 	private String mastf;
-	private String mast1;
-	private String march;
-	private String mcomp;
 	
 	public AsAnmag0f(){
 	}
 	
-	public AsAnmag0f(String atama, String mcoda, String mdesc, String mumis, Float mpeu1, Float msc11, Float mconf, String mdepi, String madiv, String magru, String masot, String mafam, String mastf, String mast1, String march, String mcomp){
+	public AsAnmag0f(String atama, String mcoda, String mdesc, String mumis, Float mpeu1, Float msc11, Float mconf, Integer mgrup, Integer msotg, String madiv, String mdepi, String magru, String masot, String mafam, String mastf){
 		super();
 		this.atama = atama;
 		this.mcoda = mcoda;
@@ -52,15 +50,14 @@ public class AsAnmag0f implements Serializable{
 		this.mpeu1 = mpeu1;
 		this.msc11 = msc11;
 		this.mconf = mconf;
-		this.mdepi = mdepi;
+		this.mgrup = mgrup;
+		this.msotg = msotg;
 		this.madiv = madiv;
+		this.mdepi = mdepi;
 		this.magru = magru;
 		this.masot = masot;
 		this.mafam = mafam;
 		this.mastf = mastf;
-		this.mast1 = mast1;
-		this.march = march;
-		this.mcomp = mcomp;
 	}	
 
 	public String getAtama(){
@@ -120,12 +117,20 @@ public class AsAnmag0f implements Serializable{
 		this.mconf = mconf;
 	}
 
-	public String getMdepi(){
-		return mdepi;
+	public Integer getMgrup(){
+		return mgrup;
 	}
 
-	public void setMdepi(String mdepi){
-		this.mdepi = mdepi;
+	public void setMgrup(Integer mgrup){
+		this.mgrup = mgrup;
+	}
+
+	public Integer getMsotg(){
+		return msotg;
+	}
+
+	public void setMsotg(Integer msotg){
+		this.msotg = msotg;
 	}
 
 	public String getMadiv(){
@@ -135,7 +140,15 @@ public class AsAnmag0f implements Serializable{
 	public void setMadiv(String madiv){
 		this.madiv = madiv;
 	}
-	
+
+	public String getMdepi(){
+		return mdepi;
+	}
+
+	public void setMdepi(String mdepi){
+		this.mdepi = mdepi;
+	}
+
 	public String getMagru(){
 		return magru;
 	}
@@ -167,46 +180,21 @@ public class AsAnmag0f implements Serializable{
 	public void setMastf(String mastf){
 		this.mastf = mastf;
 	}
-	
-	public String getMast1(){
-		return mast1;
-	}
-
-	public void setMast1(String mast1){
-		this.mast1 = mast1;
-	}
-
-	public String getMarch(){
-		return march;
-	}
-
-	public void setMarch(String march){
-		this.march = march;
-	}
-
-	public String getMcomp(){
-		return mcomp;
-	}
-
-	public void setMcomp(String mcomp){
-		this.mcomp = mcomp;
-	}
 
 	@Override
 	public int hashCode(){
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((atama == null) ? 0 : atama.hashCode());
-		result = prime * result + ((madiv == null) ? 0 : madiv.hashCode());
 		result = prime * result + ((mafam == null) ? 0 : mafam.hashCode());
 		result = prime * result + ((magru == null) ? 0 : magru.hashCode());
-		result = prime * result + ((march == null) ? 0 : march.hashCode());
 		result = prime * result + ((masot == null) ? 0 : masot.hashCode());
-		result = prime * result + ((mast1 == null) ? 0 : mast1.hashCode());
 		result = prime * result + ((mastf == null) ? 0 : mastf.hashCode());
 		result = prime * result + ((mcoda == null) ? 0 : mcoda.hashCode());
-		result = prime * result + ((mcomp == null) ? 0 : mcomp.hashCode());
 		result = prime * result + ((mconf == null) ? 0 : mconf.hashCode());
+		result = prime * result + ((mgrup == null) ? 0 : mgrup.hashCode());
+		result = prime * result + ((msotg == null) ? 0 : msotg.hashCode());
+		result = prime * result + ((madiv == null) ? 0 : madiv.hashCode());
 		result = prime * result + ((mdepi == null) ? 0 : mdepi.hashCode());
 		result = prime * result + ((mdesc == null) ? 0 : mdesc.hashCode());
 		result = prime * result + ((mpeu1 == null) ? 0 : mpeu1.hashCode());
@@ -229,6 +217,6 @@ public class AsAnmag0f implements Serializable{
 
 	@Override
 	public String toString(){
-		return "AsAnmag0f [atama=" + atama + ", mcoda=" + mcoda + ", mdesc=" + mdesc + ", mumis=" + mumis + ", mpeu1=" + mpeu1 + ", msc11=" + msc11 + ", mconf=" + mconf + ", mdepi=" + mdepi + ", madiv=" + madiv + ", magru=" + magru + ", masot=" + masot + ", mafam=" + mafam + ", mastf=" + mastf + ", mast1=" + mast1 + ", march=" + march + ", mcomp=" + mcomp + "]";
+		return "AsAnmag0f [atama=" + atama + ", mcoda=" + mcoda + ", mdesc=" + mdesc + ", mumis=" + mumis + ", mpeu1=" + mpeu1 + ", msc11=" + msc11 + ", mconf=" + mconf + ", mgrup=" + mgrup + ", msotg=" + msotg + ", madiv=" + madiv + ", mdepi=" + mdepi + ", magru=" + magru + ", masot=" + masot + ", mafam=" + mafam + ", mastf=" + mastf + "]";
 	}
 }
