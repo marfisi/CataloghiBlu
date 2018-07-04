@@ -7,7 +7,7 @@ public class RunCataloghiBlu{
 	private static Logger log;
 	
 	public static void main(String[] args){
-		PropertyConfigurator.configure("logdir/logCataloghiBlu.properties");
+		PropertyConfigurator.configure("logdir/log.properties");
 		log = Logger.getLogger(RunCataloghiBlu.class);
 		log.info("START");
 		

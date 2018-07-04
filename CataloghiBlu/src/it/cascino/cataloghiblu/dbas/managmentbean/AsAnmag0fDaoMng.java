@@ -118,6 +118,25 @@ public class AsAnmag0fDaoMng implements AsAnmag0fDao, Serializable{
 		return o;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<AsAnmag0f> getArticoliDaMcompIngrosso(String mcomp){
+		List<AsAnmag0f> o = null;
+		try{
+			try{
+				utx.begin();
+				Query query = em.createNamedQuery("AsAnmag0f.findByMcomp");
+				query.setParameter("mcomp", mcomp);
+				o = (List<AsAnmag0f>)query.getResultList();
+			}catch(NoResultException e){
+				o = null;
+			}
+			utx.commit();
+		}catch(Exception e){
+			log.fatal(e.toString());
+		}
+		return o;
+	}
+	
 	public void close(){
 		res.close();
 		log.info("chiuso");

@@ -16,5 +16,7 @@ public interface AsAnmag0fDao{
 	
 	List<AsAnmag0f> getArticoliIngrosso();
 	
+	List<AsAnmag0f> getArticoliDaMcompIngrosso(String mcomp);
+	
 	void close();
 }
